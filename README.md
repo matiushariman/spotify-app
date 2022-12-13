@@ -1,12 +1,8 @@
-| App   / Lib    | CodeCov                                                                                                                                                                     |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Overall        | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3)](https://codecov.io/gh/matiushariman/spotify-app)                 |
-|
-| lib/api-client | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3&flag=api-client)](https://codecov.io/gh/matiushariman/spotify-app) |
-|
-| lib/auth-utils | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3&flag=auth-utils)](https://codecov.io/gh/matiushariman/spotify-app) |
-|
-
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Overall  | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3)](https://codecov.io/gh/matiushariman/spotify-app)  |
+| lib/api-client  | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3&flag=api-client)](https://codecov.io/gh/matiushariman/spotify-app)  |
+| lib/auth-utils  | [![codecov](https://codecov.io/gh/matiushariman/spotify-app/branch/main/graph/badge.svg?token=NIWWLGSVU3&flag=auth-utils)](https://codecov.io/gh/matiushariman/spotify-app)  |
 
 # Spotify App
 
