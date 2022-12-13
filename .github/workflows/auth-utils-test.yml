@@ -2,7 +2,7 @@ name: test-auth-utils
 
 on:
   pull_request:
-    types: [opened, reopened, edited]
+    types: [opened, reopened, edited, synchronize]
   push:
     branches: [main]
     paths:
@@ -42,14 +42,16 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
-      - uses: actions/cache@v3
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run unit test
         run: yarn test auth-utils --coverage
       - name: Upload coverage as artifact
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/**
