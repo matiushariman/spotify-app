@@ -12,4 +12,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/auth-utils',
+  coverageReporters: ['json', ['text', { skipFull: true }]],
 };
