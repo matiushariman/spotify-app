@@ -84,26 +84,26 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Cache build
-        uses: actions/cache@v3
-        with:
-          path: '**/dist/apps/shell'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/shell') }}
       - name: Execute build app
         run: yarn run build shell
         env:
           NX_REMOTES_DOMAIN: ${{ secrets.NX_REMOTES_DOMAIN }}
+      - name: Upload build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/**
   deploy:
     name: Deploy shell app to S3
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: shinyinc/action-aws-cli@v1.2
-      - name: Retrieve build
-        uses: actions/cache@v3
+      - name: Download build from artifact
+        uses: actions/download-artifact@v3
         with:
-          path: '**/dist/apps/shell'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/shell') }}
+          name: dist
+          path: dist
       - name: Deploy to S3
         run: aws s3 sync dist/apps/shell s3://${{ secrets.AWS_S3_BUCKET_NAME }}
         env:
