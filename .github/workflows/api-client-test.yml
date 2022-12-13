@@ -1,6 +1,7 @@
 name: test-api-client
 
 on:
+  pull-request: [ opened, edited ]
   push:
     branches: [main]
     paths:
@@ -39,5 +40,5 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
-          files: '**/coverage/libs/api-client/coverage-final.json'
+          files: './coverage/libs/api-client/coverage-final.json'
           flags: api-client

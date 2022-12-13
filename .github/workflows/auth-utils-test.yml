@@ -1,6 +1,7 @@
 name: test-auth-utils
 
 on:
+  pull-request: [ opened, edited ]
   push:
     branches: [main]
     paths:
