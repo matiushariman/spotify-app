@@ -3,9 +3,6 @@ name: coverage
 on:
   push:
     branches: [main]
-    paths:
-      - 'libs/api-client/**'
-      - '.github/workflows/api-client-test.yml'
 
 jobs:
   setup:
