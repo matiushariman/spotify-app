@@ -25,9 +25,7 @@ const prodConfig = {
    *   ['app2', '//example.com/path/to/app2/remoteEntry.js'],
    * ]
    */
-  remotes: [
-    ['home', `//${process.env['NX_REMOTES_DOMAIN']}/home/remoteEntry.js`],
-  ],
+  remotes: [['home', `//spotify.matiushariman.com/home/remoteEntry.js`]],
 };
 
 module.exports = withModuleFederation(prodConfig);
