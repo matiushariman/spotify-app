@@ -2,8 +2,7 @@ name: test-auth-utils
 
 on:
   pull_request:
-    branches: [main]
-    types: [opened, edited]
+    types: [opened, reopened, edited]
   push:
     branches: [main]
     paths:
