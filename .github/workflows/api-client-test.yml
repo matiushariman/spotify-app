@@ -30,6 +30,13 @@ jobs:
       - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
         name: Install dependencies (if uncached)
         run: yarn install --frozen-lockfile
+  lint:
+    name: Lint api-client
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint on api-client
+        run: yarn nx lint api-client
   test:
     name: Test api-client
     needs: [setup]

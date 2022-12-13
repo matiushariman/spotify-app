@@ -30,6 +30,13 @@ jobs:
       - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
         name: Install dependencies (if uncached)
         run: yarn install --frozen-lockfile
+  lint:
+    name: Lint auth-utils
+    needs: [ setup ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint on auth-utils
+        run: yarn nx lint auth-utils
   test:
     name: Test auth-utils
     needs: [setup]
