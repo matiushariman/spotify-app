@@ -1,4 +1,4 @@
-name: Shell deployment
+name: Shell app deployment
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         name: Install dependencies (if uncached)
         run: yarn install --frozen-lockfile
   lint:
-    name: Lint shell
+    name: Lint shell app
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -44,10 +44,10 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Run lint on shell
+      - name: Run lint on shell app
         run: yarn nx lint shell
   test:
-    name: Test shell
+    name: Test shell app
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -89,25 +89,29 @@ jobs:
         with:
           path: '**/dist/apps/shell'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/shell') }}
-      - run: yarn run build shell
+      - name: Execute build app
+        run: yarn run build shell
         env:
           NX_REMOTES_DOMAIN: ${{ secrets.NX_REMOTES_DOMAIN }}
   deploy:
     name: Deploy shell app to S3
-    needs: [ build ]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v3
+      - name: Retrieve build
+        uses: actions/cache@v3
         with:
           path: '**/dist/apps/shell'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/shell') }}
-      - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist/apps/shell s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+      - name: Deploy to S3
+        uses: shinyinc/action-aws-cli@v1.2
+        run: aws s3 sync dist/apps/shell s3://${{ secrets.AWS_S3_BUCKET_NAME }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+      - name: Invalidate cloudfront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
