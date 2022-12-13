@@ -42,3 +42,7 @@ Thumbs.db
 **/test-results
 **/playwright-report
 **/playwright/.cache
+
+# env files
+.env
+.env.*
