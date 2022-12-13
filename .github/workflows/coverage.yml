@@ -8,14 +8,14 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      - name: setup node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
-      - name: Checking cache
+      - name: Check cache
         uses: actions/cache@v3
         id: yarn-cache
         with:
@@ -28,21 +28,49 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: '16'
-#          cache: 'yarn'
-#      - uses: actions/cache@v3
-#        with:
-#          path: '**/node_modules'
-#          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: run all unit test
         run: yarn nx run-many --target=test --coverage
-#      - name: Upload coverage to Codecov
-#        uses: codecov/codecov-action@v2
-#        with:
-#          files: '**/coverage/libs/api-client/coverage-final.json'
-#          flags: api-client
+      - name: Store coverage result as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+  upload-api-client-coverage:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download coverage result from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: '**/coverage/libs/api-client/coverage-final.json'
+          flags: api-client
+  upload-auth-utils-coverage:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download coverage result from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: '**/coverage/libs/auth-utils/coverage-final.json'
+          flags: auth-utils
 
 
