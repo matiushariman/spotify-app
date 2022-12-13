@@ -2,7 +2,8 @@ name: test-api-client
 
 on:
   push:
-    branches: [main]
+    pull_request:
+      types: [ opened, edited ]
     paths:
       - 'libs/api-client/**'
       - '.github/workflows/api-client-test.yml'
@@ -35,7 +36,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: run unit test
-        run: yarn test api-client --coverage
+        run: yarn test api-client
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
