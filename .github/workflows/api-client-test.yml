@@ -10,10 +10,34 @@ on:
 
 jobs:
   setup:
+    name: Setup dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Check cache
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+  lint:
+    name: lint
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
@@ -21,13 +45,16 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install --frozen-lockfile
+      - name: Run lint
+        run: yarn nx lint api-client
   test:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
@@ -35,8 +62,22 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: run unit test
-        run: yarn test api-client
+      - name: run all unit test
+        run: yarn test api-client --coverage
+      - name: Store coverage result as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+  upload-coverage:
+    name: Upload coverage report
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download coverage result from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
