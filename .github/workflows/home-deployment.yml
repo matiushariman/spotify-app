@@ -96,13 +96,13 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - uses: shinyinc/action-aws-cli@v1.2
       - name: Retrieve build
         uses: actions/cache@v3
         with:
           path: '**/dist/apps/home'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/home') }}
       - name: Deploy to S3
-        uses: shinyinc/action-aws-cli@v1.2
         run: aws s3 sync dist/apps/home s3://${{ secrets.AWS_S3_BUCKET_NAME }}/home
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
