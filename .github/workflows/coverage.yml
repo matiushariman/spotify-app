@@ -66,6 +66,7 @@ jobs:
           name: coverage
           path: coverage
   upload-api-client-coverage:
+    name: Upload api-client coverage report
     needs: [test]
     runs-on: ubuntu-latest
     steps:
@@ -79,6 +80,7 @@ jobs:
           files: '**/coverage/libs/api-client/coverage-final.json'
           flags: api-client
   upload-auth-utils-coverage:
+    name: Upload auth-utils coverage report
     needs: [test]
     runs-on: ubuntu-latest
     steps:
