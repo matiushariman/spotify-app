@@ -6,6 +6,7 @@ on:
 
 jobs:
   setup:
+    name: Setup dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,6 +25,13 @@ jobs:
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
+  lint:
+    name: lint
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint
+        run: yarn nx run-many --target=lint
   test:
     needs: [setup]
     runs-on: ubuntu-latest
