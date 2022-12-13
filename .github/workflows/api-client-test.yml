@@ -1,7 +1,9 @@
 name: test-api-client
 
 on:
-  pull-request: [ opened, edited ]
+  pull-request:
+    branches: [main]
+    types: [opened, edited]
   push:
     branches: [main]
     paths:
