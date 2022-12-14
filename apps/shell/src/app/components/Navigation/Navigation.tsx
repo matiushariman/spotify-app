@@ -1,4 +1,5 @@
 import { Logo } from './Logo';
+import { NavigationList } from './NavigationList';
 
 export const Navigation = () => (
   <nav
@@ -7,6 +8,9 @@ export const Navigation = () => (
   >
     <div className="p-6">
       <Logo />
+    </div>
+    <div className="pt-2 pl-2">
+      <NavigationList />
     </div>
   </nav>
 );
