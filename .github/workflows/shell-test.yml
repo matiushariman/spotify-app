@@ -5,10 +5,6 @@ on:
     types: [opened, reopened, synchronize]
     paths:
       - 'apps/shell/**'
-  push:
-    branches: [main]
-    paths:
-      - 'apps/shell/**'
 
 jobs:
   setup:
