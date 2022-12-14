@@ -128,6 +128,12 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Setup playwright
         run: |
           yarn playwright install
