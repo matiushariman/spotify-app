@@ -139,6 +139,7 @@ jobs:
           yarn playwright install
       - name: Run playwright
         run: yarn playwright test src --config apps/shell-e2e/playwright.config.ts
+        continue-on-error: true
         env:
           E2E_BASE_URL: ${{ secrets.E2E_BASE_URL }}
           E2E_LOGIN_EMAIL: ${{ secrets.E2E_LOGIN_EMAIL }}
