@@ -64,7 +64,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run unit test
-        run: yarn nx run-many --target=test
+        run: yarn nx run-many --target=test --coverage
       - name: Upload coverage as artifact
         uses: actions/upload-artifact@v3
         with:
