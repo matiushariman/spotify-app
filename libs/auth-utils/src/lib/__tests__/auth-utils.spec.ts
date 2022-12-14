@@ -2,7 +2,7 @@ const mockSetter = jest.fn();
 
 jest.mock('typescript-cookie', () => ({
   Cookies: {
-    get: jest.fn().mockReturnValue('efghijkl'),
+    get: jest.fn().mockReturnValue('token'),
     set: mockSetter,
   },
 }));
@@ -20,5 +20,9 @@ describe('authUtils', () => {
     authUtils.setToken({ token: 'abcd', privateKey: 'def' });
 
     expect(mockSetter).toHaveBeenCalled();
+  });
+
+  it('should return true if token exists', () => {
+    expect(authUtils.checkToken()).toEqual(true);
   });
 });
