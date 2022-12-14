@@ -3,6 +3,9 @@ name: test-auth-utils
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    paths:
+      - 'libs/auth-utils/**'
+      - '.github/workflows/auth-utils-test.yml'
   push:
     branches: [main]
     paths:
