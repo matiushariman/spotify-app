@@ -137,6 +137,7 @@ jobs:
       - name: Setup playwright
         run: |
           yarn playwright install
-      - run: playwright test src --config apps/shell-e2e/playwright.config.ts
+      - name: Run playwright
+        run: yarn playwright test src --config apps/shell-e2e/playwright.config.ts
         env:
           E2E_BASE_URL: ${{ secrets.E2E_BASE_URL }}
