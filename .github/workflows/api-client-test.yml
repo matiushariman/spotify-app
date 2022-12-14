@@ -3,6 +3,9 @@ name: test-api-client
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    paths:
+      - 'libs/api-client/**'
+      - '.github/workflows/api-client-test.yml'
   push:
     branches: [main]
     paths:
