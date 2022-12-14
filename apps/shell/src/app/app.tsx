@@ -10,6 +10,7 @@ const Home = lazy(() => import('home/Module'));
 const authUtils = new AuthUtils();
 const authorization = new Authorization({
   clientId: process.env['NX_SPOTIFY_CLIENT_ID'],
+  redirectUri: process.env['NX_SPOTIFY_REDIRECT_URI'],
 });
 
 export function App() {
