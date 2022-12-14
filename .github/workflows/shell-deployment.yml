@@ -88,6 +88,8 @@ jobs:
         run: yarn run build shell
         env:
           NX_REMOTES_DOMAIN: ${{ secrets.NX_REMOTES_DOMAIN }}
+          NX_SPOTIFY_REDIRECT_URI: ${{ secrets.NX_SPOTIFY_REDIRECT_URI }}
+          NX_SPOTIFY_CLIENT_ID: ${{ secrets.NX_SPOTIFY_CLIENT_ID }}
       - name: Upload build as artifact
         uses: actions/upload-artifact@v3
         with:
