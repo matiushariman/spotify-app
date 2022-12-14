@@ -1,6 +1,15 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "spotify-app",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "Y2ZhZmU1NmMtODUwZS00NWZjLWJlNGEtYmQzMGMzNDMzZTUzfHJlYWQtd3JpdGU="
+      }
+    }
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"]
