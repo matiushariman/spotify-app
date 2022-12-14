@@ -23,4 +23,8 @@ export class AuthUtils {
 
     return bytes.toString(CryptoJS.enc.Utf8);
   }
+
+  checkToken() {
+    return typeof Cookies.get('token') === 'string';
+  }
 }
