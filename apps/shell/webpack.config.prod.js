@@ -3,7 +3,7 @@
 const { withModuleFederation } = require('@nrwl/react/module-federation');
 const baseConfig = require('./module-federation.config');
 
-const { NX_REMOTES_DOMAIN } = process.env;
+const { REMOTES_DOMAIN } = process.env;
 
 /**
  * @type {import('@nrwl/devkit').ModuleFederationConfig}
@@ -27,7 +27,7 @@ const prodConfig = {
    *   ['app2', '//example.com/path/to/app2/remoteEntry.js'],
    * ]
    */
-  remotes: [['home', `//${NX_REMOTES_DOMAIN}/home/remoteEntry.js`]],
+  remotes: [['home', `//${REMOTES_DOMAIN}/home/remoteEntry.js`]],
 };
 
 module.exports = withModuleFederation(prodConfig);
