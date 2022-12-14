@@ -1,11 +1,10 @@
-name: test-auth-utils
+name: Integrate shell app
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
     paths:
-      - 'libs/auth-utils/**'
-      - '.github/workflows/auth-utils-test.yml'
+      - 'apps/shell/**'
 
 jobs:
   setup:
@@ -29,7 +28,7 @@ jobs:
         name: Install dependencies (if uncached)
         run: yarn install --frozen-lockfile
   lint:
-    name: Lint auth-utils
+    name: Lint shell app
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -46,10 +45,10 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Run lint on auth-utils
-        run: yarn nx lint auth-utils
+      - name: Run lint on shell app
+        run: yarn nx lint shell
   test:
-    name: Test auth-utils
+    name: Test shell app
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -67,14 +66,14 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run unit test
-        run: yarn test auth-utils --coverage
+        run: yarn test shell --coverage
       - name: Upload coverage as artifact
         uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/**
   upload-coverage:
-    name: Upload auth-utils coverage to codeCov
+    name: Upload shell coverage to codeCov
     needs: [test]
     runs-on: ubuntu-latest
     steps:
@@ -88,5 +87,5 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
-          files: '**/coverage/libs/auth-utils/coverage-final.json'
-          flags: auth-utils
+          files: '**/coverage/apps/shell/coverage-final.json'
+          flags: shell

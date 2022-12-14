@@ -1,0 +1,40 @@
+{
+  "name": "home-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/home-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@mands/nx-playwright:playwright-executor",
+      "options": {
+        "e2eFolder": "apps/home-e2e",
+        "devServerTarget": "home:serve",
+        "packageRunner": "yarn"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "home:serve:production"
+        }
+      }
+    },
+    "ts-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "tsc --build --force --verbose apps/home-e2e/tsconfig.json"
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/home-e2e/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["home"]
+}

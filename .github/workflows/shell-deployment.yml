@@ -1,0 +1,118 @@
+name: Shell app deployment
+
+on:
+  push:
+    tags:
+      - shell-v**
+
+jobs:
+  setup:
+    name: Setup dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+        name: Install dependencies (if uncached)
+        run: yarn install --frozen-lockfile
+  lint:
+    name: Lint shell app
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Run lint on shell app
+        run: yarn nx lint shell
+  test:
+    name: Test shell app
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Run unit test
+        run: yarn test shell
+  build:
+    name: Build shell app
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      - name: Cache dependencies
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Execute build app
+        run: yarn run build shell
+        env:
+          NX_REMOTES_DOMAIN: ${{ secrets.NX_REMOTES_DOMAIN }}
+      - name: Upload build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/**
+  deploy:
+    name: Deploy shell app to S3
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: shinyinc/action-aws-cli@v1.2
+      - name: Download build from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - name: Deploy to S3
+        run: aws s3 sync dist/apps/shell s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Invalidate cloudfront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}

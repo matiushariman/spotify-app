@@ -1,11 +1,8 @@
-name: test-auth-utils
+name: Integration CI
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-    paths:
-      - 'libs/auth-utils/**'
-      - '.github/workflows/auth-utils-test.yml'
+  push:
+    branches: [main]
 
 jobs:
   setup:
@@ -29,7 +26,7 @@ jobs:
         name: Install dependencies (if uncached)
         run: yarn install --frozen-lockfile
   lint:
-    name: Lint auth-utils
+    name: Lint all apps & libs
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -46,10 +43,10 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Run lint on auth-utils
-        run: yarn nx lint auth-utils
+      - name: Run lint on all apps & libs
+        run: yarn nx run-many --target=lint
   test:
-    name: Test auth-utils
+    name: Test all apps & libs
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -67,15 +64,66 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run unit test
-        run: yarn test auth-utils --coverage
+        run: yarn nx run-many --target=test --coverage
       - name: Upload coverage as artifact
         uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/**
-  upload-coverage:
-    name: Upload auth-utils coverage to codeCov
+  upload-shell-coverage:
+    name: Upload shell coverage to codeCov
     needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download coverage from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: '**/coverage/apps/shell/coverage-final.json'
+          flags: shell
+  upload-home-coverage:
+    name: Upload home coverage to codeCov
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download coverage from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: '**/coverage/apps/home/coverage-final.json'
+          flags: home
+  upload-api-client-coverage:
+    name: Upload api-client coverage to codeCov
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download coverage from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: '**/coverage/libs/api-client/coverage-final.json'
+          flags: api-client
+  upload-auth-utils-coverage:
+    name: Upload auth-utils coverage to codeCov
+    needs: [ test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
