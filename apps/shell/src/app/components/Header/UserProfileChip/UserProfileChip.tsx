@@ -4,7 +4,10 @@ export const UserProfileChip = () => {
   const user = useSelectProfile();
 
   return (
-    <span className="bg-black rounded-full pt-1 pb-1 pl-1 pr-2 flex items-center">
+    <span
+      aria-label="user profile"
+      className="bg-black rounded-full pt-1 pb-1 pl-1 pr-2 flex items-center"
+    >
       <img
         src={user?.images[0].url}
         className="rounded-full mr-2"
