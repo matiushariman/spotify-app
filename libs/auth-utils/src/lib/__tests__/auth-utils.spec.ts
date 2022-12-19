@@ -1,10 +1,8 @@
 const mockSetter = jest.fn();
 
 jest.mock('typescript-cookie', () => ({
-  Cookies: {
-    get: jest.fn().mockReturnValue('token'),
-    set: mockSetter,
-  },
+  getCookie: jest.fn().mockReturnValue('token'),
+  setCookie: mockSetter,
 }));
 
 import { AuthUtils } from '../auth-utils';
