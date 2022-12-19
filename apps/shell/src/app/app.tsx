@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { AuthUtils } from '@spotify-app/auth-utils';
 import { Authorization } from '@spotify-app/api-client';
 
+import { Header } from './components/Header';
 import { Navigation } from './components/Navigation';
 import { Callback } from './pages/Callback';
 
@@ -32,7 +33,8 @@ export function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[rgba(0,0,0,0.6)] via-[0] to-[#121212] flex">
       <Navigation />
-      <div className="ml-[232px]">
+      <div className="ml-[232px] w-full">
+        <Header />
         <Suspense fallback={null}>
           <Routes>
             <Route path="/callback" element={<Callback />} />
