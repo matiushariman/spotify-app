@@ -1,4 +1,4 @@
-name: test-api-client
+name: API Client CI
 
 on:
   pull_request:

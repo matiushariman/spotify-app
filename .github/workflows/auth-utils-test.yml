@@ -1,4 +1,4 @@
-name: test-auth-utils
+name: Auth utils CI
 
 on:
   pull_request:

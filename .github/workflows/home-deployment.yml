@@ -1,4 +1,4 @@
-name: Home app deployment
+name: Home CD
 
 on:
   push:

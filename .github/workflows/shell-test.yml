@@ -1,4 +1,4 @@
-name: Integrate shell app
+name: Shell CI
 
 on:
   pull_request:

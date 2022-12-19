@@ -1,4 +1,4 @@
-name: Integrate home app
+name: Home CI
 
 on:
   pull_request:
