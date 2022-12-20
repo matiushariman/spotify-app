@@ -18,6 +18,7 @@ jest.mock('./hooks/useGetProfile', () => ({
     images: [{ url: 'https://api.spotify.com/' }],
   }),
 }));
+
 describe('components/Header', () => {
   beforeEach(() => {
     render(<Header />);

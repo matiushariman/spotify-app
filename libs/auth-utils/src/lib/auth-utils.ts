@@ -1,6 +1,6 @@
 import * as CryptoJS from 'crypto-js';
 
-import { getCookie, setCookie } from 'typescript-cookie';
+import { getCookie, setCookie, removeCookie } from 'typescript-cookie';
 
 import type { SetTokenParams } from './auth-utils.types';
 
@@ -26,5 +26,9 @@ export class AuthUtils {
 
   checkToken() {
     return typeof getCookie('token') === 'string';
+  }
+
+  removeToken() {
+    removeCookie('token');
   }
 }

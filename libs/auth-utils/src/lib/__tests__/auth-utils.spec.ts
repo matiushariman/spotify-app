@@ -1,8 +1,10 @@
 const mockSetter = jest.fn();
+const mockRemove = jest.fn();
 
 jest.mock('typescript-cookie', () => ({
   getCookie: jest.fn().mockReturnValue('token'),
   setCookie: mockSetter,
+  removeCookie: mockRemove,
 }));
 
 import { AuthUtils } from '../auth-utils';
@@ -22,5 +24,11 @@ describe('authUtils', () => {
 
   it('should return true if token exists', () => {
     expect(authUtils.checkToken()).toEqual(true);
+  });
+
+  it('should remove existing cookie if removeCookie() is called', () => {
+    authUtils.removeToken();
+
+    expect(mockRemove).toHaveBeenCalled();
   });
 });
