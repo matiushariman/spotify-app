@@ -32,4 +32,4 @@ const customRender = (
 
 export * from '@testing-library/react';
 
-export { customRender as render };
+export { customRender as render, AllTheProviders as wrapper };
