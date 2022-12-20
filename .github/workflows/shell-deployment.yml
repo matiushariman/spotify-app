@@ -45,7 +45,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run lint on shell app
-        run: yarn nx lint shell
+        run: yarn nx lint shell --skip-nx-cache
   test:
     name: Test shell app
     needs: [setup]
@@ -65,7 +65,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Run unit test
-        run: yarn test shell
+        run: yarn test shell --skip-nx-cache
   build:
     name: Build shell app
     needs: [test]
@@ -85,7 +85,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Execute build app
-        run: yarn run build shell
+        run: yarn run build shell --skip-nx-cache
         env:
           NX_REMOTES_DOMAIN: ${{ secrets.NX_REMOTES_DOMAIN }}
           NX_SPOTIFY_REDIRECT_URI: ${{ secrets.NX_SPOTIFY_REDIRECT_URI }}

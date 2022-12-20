@@ -5,6 +5,7 @@ import {
   createMemoryRouter,
   RouteObject,
 } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 import '../../styles.css';
 
@@ -17,7 +18,11 @@ const AllTheProviders: FC<{ children: ReactNode }> = ({ children }) => {
   ];
   const router = createMemoryRouter(routes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={new QueryClient()}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 };
 
 const customRender = (
@@ -27,4 +32,4 @@ const customRender = (
 
 export * from '@testing-library/react';
 
-export { customRender as render };
+export { customRender as render, AllTheProviders as wrapper };

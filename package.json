@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "test:shell:e2e-local": "env-cmd -f .e2e.env yarn playwright test src --config apps/shell-e2e/playwright.config.ts"
   },
   "private": true,
   "devDependencies": {
@@ -22,6 +23,7 @@
     "@playwright/test": "1.27.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@svgr/webpack": "^6.1.2",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "28.1.1",
@@ -33,6 +35,7 @@
     "autoprefixer": "10.4.13",
     "babel-jest": "28.1.1",
     "cypress": "^11.0.0",
+    "env-cmd": "^10.1.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -61,6 +64,7 @@
     "crypto-js": "^4.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-query": "^3.39.2",
     "react-router-dom": "6.4.5",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.3.0",

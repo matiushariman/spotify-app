@@ -10,5 +10,6 @@ export const baseConfig: PlaywrightTestConfig = {
   use: {
     baseURL,
     trace: 'retain-on-failure',
+    video: 'retain-on-failure',
   },
 };
