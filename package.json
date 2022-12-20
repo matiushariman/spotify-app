@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "test:shell:e2e-local": "env-cmd -f .e2e.env yarn playwright test src --config apps/shell-e2e/playwright.config.ts"
   },
   "private": true,
   "devDependencies": {
@@ -34,6 +35,7 @@
     "autoprefixer": "10.4.13",
     "babel-jest": "28.1.1",
     "cypress": "^11.0.0",
+    "env-cmd": "^10.1.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
