@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import AuthFeature from './AuthFeature';
+import Login from './Login';
 
-describe('AuthFeature', () => {
+describe('Login', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<AuthFeature />);
+    const { baseElement } = render(<Login />);
     expect(baseElement).toBeTruthy();
   });
 });
