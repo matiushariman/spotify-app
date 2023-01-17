@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import AuthComponents from './AuthComponents';
+import LoginForm from './LoginForm';
 
-describe('AuthComponents', () => {
+describe('LoginForm', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<AuthComponents />);
+    const { baseElement } = render(<LoginForm />);
     expect(baseElement).toBeTruthy();
   });
 });

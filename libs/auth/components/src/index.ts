@@ -1,1 +1,1 @@
-export * from './lib/AuthComponents';
+export * from './lib/LoginForm/LoginForm';
