@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@react-spotify/auth-components": ["libs/auth/components/src/index.ts"],
       "@react-spotify/auth-feature": ["libs/auth/feature/src/index.ts"]
     }
   },
