@@ -4,6 +4,7 @@
 dist
 tmp
 /out-tsc
+.eslintcache
 
 # dependencies
 node_modules
@@ -37,16 +38,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# Playwright
-**/test-results
-**/playwright-report
-**/playwright/.cache
-
-# env files
-.env
-.env.*
-.*.env
-**/.env
-**/.env.*
-**/.*.env

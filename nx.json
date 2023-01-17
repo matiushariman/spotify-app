@@ -1,32 +1,53 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "spotify-app",
+  "npmScope": "react-spotify",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [],
-        "accessToken": "Y2ZhZmU1NmMtODUwZS00NWZjLWJlNGEtYmQzMGMzNDMzZTUzfHJlYWQtd3JpdGU="
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
       }
     }
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "inputs": ["default", "^production"]
     },
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
-    "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+    "build-storybook": {
+      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
     }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+    ],
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
   },
   "generators": {
     "@nrwl/react": {
       "application": {
         "style": "css",
         "linter": "eslint",
-        "bundler": "webpack",
+        "bundler": "vite",
         "babel": true
       },
       "component": {
@@ -34,9 +55,9 @@
       },
       "library": {
         "style": "css",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
       }
     }
-  },
-  "defaultProject": "shell"
+  }
 }
