@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`Button > should render successfully 1`] = `
+<div>
+  <button
+    class="bg-spotify-green text-spotify-black min-w-[142px] rounded-full px-4 py-2 text-sm font-bold uppercase transition-transform hover:scale-110"
+  />
+</div>
+`;

@@ -1,13 +1,13 @@
-import styles from './Button.module.css';
+import type { ButtonHTMLAttributes } from 'react';
 
 /* eslint-disable-next-line */
-export interface ButtonProps {}
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export function Button(props: ButtonProps) {
+export function Button({ children }: ButtonProps) {
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to Button!</h1>
-    </div>
+    <button className="bg-spotify-green text-spotify-black min-w-[142px] rounded-full px-4 py-2 text-sm font-bold uppercase transition-transform hover:scale-110">
+      {children}
+    </button>
   );
 }
 
