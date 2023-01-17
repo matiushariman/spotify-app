@@ -1,14 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './App.module.css';
-import NxWelcome from './nx-welcome';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Login } from '@react-spotify/auth-feature';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Login />,
+  },
+]);
 
 export function App() {
-  return (
-    <>
-      <NxWelcome title="react-spotify-app" />
-      <div />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
