@@ -36,6 +36,7 @@ specifiers:
   '@vitest/ui': ^0.25.8
   autoprefixer: 10.4.13
   babel-loader: 8.1.0
+  classcat: 5.0.4
   eslint: ~8.15.0
   eslint-config-prettier: 8.1.0
   eslint-plugin-import: 2.26.0
@@ -64,6 +65,7 @@ specifiers:
   vitest: ^0.25.8
 
 dependencies:
+  classcat: 5.0.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tslib: 2.4.1
@@ -6957,6 +6959,10 @@ packages:
       isobject: 3.0.1
       static-extend: 0.1.2
     dev: true
+
+  /classcat/5.0.4:
+    resolution: {integrity: sha512-sbpkOw6z413p+HDGcBENe498WM9woqWHiJxCq7nvmxe9WmrUmqfAcxpIwAiMtM5Q3AhYkzXcNQHqsWq0mND51g==}
+    dev: false
 
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}

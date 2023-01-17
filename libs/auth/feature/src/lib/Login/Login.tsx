@@ -1,10 +1,11 @@
 import { LoginForm } from '@react-spotify/auth-components';
+import { GradientBackground } from '@react-spotify/shared-ui-components';
 
 export function Login() {
   return (
-    <div className="flex h-screen items-center justify-around bg-[#121212] text-white">
+    <GradientBackground className="flex items-center justify-around">
       <LoginForm />
-    </div>
+    </GradientBackground>
   );
 }
 
