@@ -25,6 +25,7 @@ specifiers:
   '@storybook/react': 6.5.15
   '@svgr/webpack': ^5.4.0
   '@testing-library/react': 13.4.0
+  '@testing-library/user-event': 14.4.3
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -97,6 +98,7 @@ devDependencies:
   '@storybook/react': 6.5.15_bnvwsarzsqhfjg447f4mjnr4xe
   '@svgr/webpack': 5.5.0
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
+  '@testing-library/user-event': 14.4.3_yxlyej73nftwmh2fiao7paxmlm
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
@@ -5013,6 +5015,15 @@ packages:
       '@types/react-dom': 18.0.9
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: true
+
+  /@testing-library/user-event/14.4.3_yxlyej73nftwmh2fiao7paxmlm:
+    resolution: {integrity: sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
+    dependencies:
+      '@testing-library/dom': 8.20.0
     dev: true
 
   /@tootallnate/once/2.0.0:

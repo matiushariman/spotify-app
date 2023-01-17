@@ -1,5 +1,16 @@
 import { Button, SpotifyLink } from '@react-spotify/shared-ui-components';
 
+const getSpotifyAuthUrl = () => {
+  const authorizationUrl = 'https://accounts.spotify.com/authorize';
+  const scopes = ['user-read-private', 'user-read-email'];
+  const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
+  const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+
+  return `${authorizationUrl}?response_type=token&scope=${encodeURIComponent(
+    scopes.join(' ')
+  )}&client_id=${clientId}&redirect_uri=${redirectUri}`;
+};
+
 export function LoginForm() {
   return (
     <div className="max-w-md space-y-6 p-4">
@@ -16,7 +27,9 @@ export function LoginForm() {
         To continue, please click on the log in button below:
       </p>
       <div className="text-center">
-        <Button>Log In</Button>
+        <Button onClick={() => window.open(getSpotifyAuthUrl(), '_blank')}>
+          Log In
+        </Button>
       </div>
     </div>
   );
