@@ -4,7 +4,7 @@ export function AppBar() {
   return (
     <header>
       <div className="container mx-auto flex min-h-[72px] items-center justify-end p-4">
-        <UserMenu username="Username" />
+        <UserMenu />
       </div>
     </header>
   );
