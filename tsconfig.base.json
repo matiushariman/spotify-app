@@ -17,6 +17,7 @@
     "paths": {
       "@react-spotify/auth-components": ["libs/auth/components/src/index.ts"],
       "@react-spotify/auth-feature": ["libs/auth/feature/src/index.ts"],
+      "@react-spotify/shared-stores": ["libs/shared/stores/src/index.ts"],
       "@react-spotify/shared-ui-components": [
         "libs/shared/ui-components/src/index.ts"
       ]
