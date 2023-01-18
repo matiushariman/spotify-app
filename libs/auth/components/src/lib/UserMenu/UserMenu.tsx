@@ -6,6 +6,7 @@ import {
   Item,
   Arrow,
 } from '@radix-ui/react-dropdown-menu';
+import { useSessionStore } from '@react-spotify/shared-stores';
 import Avatar from '../Avatar/Avatar';
 import UsernameTooltip from '../UsernameTooltip/UsernameTooltip';
 
@@ -17,6 +18,8 @@ export interface UserMenuProps {
 }
 
 export function UserMenu({ username }: UserMenuProps) {
+  const removeAccessToken = useSessionStore((state) => state.removeAccessToken);
+
   return (
     <Root>
       <UsernameTooltip username={username}>
@@ -31,7 +34,11 @@ export function UserMenu({ username }: UserMenuProps) {
       </UsernameTooltip>
       <Portal>
         <Content className="bg-spotify-black min-w-[196px] rounded p-2 shadow">
-          <Item role="button" className="cursor-pointer p-2 text-sm text-white">
+          <Item
+            onClick={removeAccessToken}
+            role="button"
+            className="cursor-pointer p-2 text-sm text-white"
+          >
             Log Out
           </Item>
           <Arrow className="fill-spotify-black" />

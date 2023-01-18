@@ -5,6 +5,7 @@ export interface UseSessionStoreState {
   accessToken: string | null;
   isAuthenticated: boolean;
   setAccessToken: (accessToken: string) => void;
+  removeAccessToken: () => void;
 }
 
 export const useSessionStore = create<UseSessionStoreState>((set) => ({
@@ -12,6 +13,9 @@ export const useSessionStore = create<UseSessionStoreState>((set) => ({
   isAuthenticated: false,
   setAccessToken: (accessToken) => {
     set({ accessToken, isAuthenticated: true });
+  },
+  removeAccessToken: () => {
+    set({ accessToken: null, isAuthenticated: false });
   },
 }));
 
