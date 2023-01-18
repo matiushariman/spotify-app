@@ -1,8 +1,10 @@
+import UserMenu from '../UserMenu/UserMenu';
+
 export function AppBar() {
   return (
     <header>
-      <div className="container mx-auto flex min-h-[72px] items-center p-4">
-        <h1>Welcome to AppBar!</h1>
+      <div className="container mx-auto flex min-h-[72px] items-center justify-end p-4">
+        <UserMenu username="Username" />
       </div>
     </header>
   );

@@ -7,6 +7,7 @@ import {
   Arrow,
 } from '@radix-ui/react-dropdown-menu';
 import Avatar from '../Avatar/Avatar';
+import UsernameTooltip from '../UsernameTooltip/UsernameTooltip';
 
 const displayUsername = (username: string) =>
   username.length > 13 ? `${username.substring(0, 13)}...` : username;
@@ -18,14 +19,16 @@ export interface UserMenuProps {
 export function UserMenu({ username }: UserMenuProps) {
   return (
     <Root>
-      <Trigger asChild>
-        <button className="hover:bg-spotify-black rounded-full bg-black pr-2 text-sm font-bold transition-colors">
-          <span className="mr-2">
-            <Avatar />
-          </span>
-          {displayUsername(username)}
-        </button>
-      </Trigger>
+      <UsernameTooltip username={username}>
+        <Trigger asChild>
+          <button className="hover:bg-spotify-black rounded-full bg-black pr-2 text-sm font-bold transition-colors">
+            <span className="mr-2">
+              <Avatar />
+            </span>
+            {displayUsername(username)}
+          </button>
+        </Trigger>
+      </UsernameTooltip>
       <Portal>
         <Content className="bg-spotify-black min-w-[196px] rounded p-2 shadow">
           <Item role="button" className="cursor-pointer p-2 text-sm text-white">
