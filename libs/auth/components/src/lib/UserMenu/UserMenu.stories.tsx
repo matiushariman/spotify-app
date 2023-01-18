@@ -11,5 +11,12 @@ const Template: ComponentStory<typeof UserMenu> = (args) => (
   <UserMenu {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const UnclippedUsername = Template.bind({});
+UnclippedUsername.args = {
+  username: 'username',
+};
+
+export const ClippedUsername = Template.bind({});
+ClippedUsername.args = {
+  username: 'username is so looooooong',
+};

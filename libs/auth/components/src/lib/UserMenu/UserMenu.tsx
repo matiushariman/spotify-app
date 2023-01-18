@@ -8,7 +8,14 @@ import {
 } from '@radix-ui/react-dropdown-menu';
 import Avatar from '../Avatar/Avatar';
 
-export function UserMenu() {
+const displayUsername = (username: string) =>
+  username.length > 13 ? `${username.substring(0, 13)}...` : username;
+
+export interface UserMenuProps {
+  username: string;
+}
+
+export function UserMenu({ username }: UserMenuProps) {
   return (
     <Root>
       <Trigger asChild>
@@ -16,7 +23,7 @@ export function UserMenu() {
           <span className="mr-2">
             <Avatar />
           </span>
-          matius harima...
+          {displayUsername(username)}
         </button>
       </Trigger>
       <Portal>
