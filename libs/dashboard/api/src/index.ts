@@ -1,1 +1,1 @@
-export * from './lib/dashboard-api';
+export * from './lib/getMe/getMe';
