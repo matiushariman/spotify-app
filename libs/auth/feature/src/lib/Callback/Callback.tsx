@@ -2,18 +2,20 @@ import {
   GradientBackground,
   Button,
 } from '@react-spotify/shared-ui-components';
+import { useSessionStore } from '@react-spotify/shared-stores';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export function Callback() {
   const { hash } = useLocation();
   const navigate = useNavigate();
+  const setAccessToken = useSessionStore((state) => state.setAccessToken);
 
   useEffect(() => {
     if (hash) {
       const accessToken = hash.split('&')[0].split('=')[1];
-      localStorage.setItem('accessToken', accessToken);
-      navigate('/', { replace: true });
+      setAccessToken(accessToken);
+      navigate('/');
     }
   }, []);
 

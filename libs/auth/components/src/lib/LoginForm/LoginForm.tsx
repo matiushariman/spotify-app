@@ -27,9 +27,7 @@ export function LoginForm() {
         To continue, please click on the log in button below:
       </p>
       <div className="text-center">
-        <Button onClick={() => window.open(getSpotifyAuthUrl(), '_blank')}>
-          Log In
-        </Button>
+        <Button onClick={() => window.open(getSpotifyAuthUrl())}>Log In</Button>
       </div>
     </div>
   );
