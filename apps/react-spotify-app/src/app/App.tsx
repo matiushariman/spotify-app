@@ -1,10 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login } from '@react-spotify/auth-feature';
+import { Login, Callback } from '@react-spotify/auth-feature';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Login />,
+  },
+  {
+    path: '/callback',
+    element: <Callback />,
   },
 ]);
 
