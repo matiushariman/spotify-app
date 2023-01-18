@@ -1,4 +1,4 @@
-import { SideNavigation, AppBar } from '@react-spotify/auth-components';
+import { SideNavigation, AppBar } from '@react-spotify/dashboard-components';
 import { GradientBackground } from '@react-spotify/shared-ui-components';
 
 export function Dashboard() {
