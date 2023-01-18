@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login, Callback } from '@react-spotify/auth-feature';
+import { Login, Callback, Dashboard } from '@react-spotify/auth-feature';
 import { useSessionStore } from '@react-spotify/shared-stores';
 import { useMemo } from 'react';
 
@@ -10,7 +10,7 @@ export function App() {
       createBrowserRouter([
         {
           path: '/',
-          element: isAuthenticated ? <p>Authenticated</p> : <Login />,
+          element: isAuthenticated ? <Dashboard /> : <Login />,
         },
         {
           path: '/callback',
