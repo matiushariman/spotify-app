@@ -17,6 +17,7 @@
     "paths": {
       "@react-spotify/auth-components": ["libs/auth/components/src/index.ts"],
       "@react-spotify/auth-feature": ["libs/auth/feature/src/index.ts"],
+      "@react-spotify/dashboard-api": ["libs/dashboard/api/src/index.ts"],
       "@react-spotify/dashboard-components": [
         "libs/dashboard/components/src/index.ts"
       ],
