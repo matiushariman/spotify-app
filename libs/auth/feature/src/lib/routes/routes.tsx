@@ -1,7 +1,9 @@
+import { lazy, Suspense } from 'react';
 import Login from '../Login/Login';
 
 import type { RouteObject } from 'react-router-dom';
-import Callback from '../Callback/Callback';
+
+const Callback = lazy(() => import('../Callback/Callback'));
 
 export const routes: RouteObject[] = [
   {
@@ -10,7 +12,11 @@ export const routes: RouteObject[] = [
   },
   {
     path: '/callback',
-    element: <Callback />,
+    element: (
+      <Suspense>
+        <Callback />
+      </Suspense>
+    ),
   },
 ];
 
