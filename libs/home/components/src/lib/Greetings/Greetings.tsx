@@ -1,14 +1,17 @@
-import styles from './Greetings.module.css';
+const displayGreetings = () => {
+  const currentTime = new Date().getHours();
 
-/* eslint-disable-next-line */
-export interface GreetingsProps {}
+  if (currentTime < 12) {
+    return 'Good morning';
+  } else if (currentTime < 18) {
+    return 'Good afternoon';
+  }
 
-export function Greetings(props: GreetingsProps) {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to Greetings!</h1>
-    </div>
-  );
+  return 'Good evening';
+};
+
+export function Greetings() {
+  return <h1 className="text-3xl font-bold">{displayGreetings()}</h1>;
 }
 
 export default Greetings;
