@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { getMe } from '@react-spotify/dashboard-api';
+import { getMeLoader } from '@react-spotify/dashboard-api';
 import { useSessionStore } from '@react-spotify/shared-stores';
 import Dashboard from '../../Dashboard/Dashboard';
 
@@ -16,8 +16,8 @@ export function useDashboardRoutes(): UseDashboardRoutes {
     {
       path: '/',
       element: <Dashboard />,
-      loader: () => {
-        return getMe({ accessToken });
+      loader: async () => {
+        return getMeLoader(accessToken);
       },
     },
   ];
