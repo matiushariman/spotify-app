@@ -1,4 +1,5 @@
 import type { ComponentStory, ComponentMeta } from '@storybook/react';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { UserMenu } from './UserMenu';
 
 const Story: ComponentMeta<typeof UserMenu> = {
@@ -7,16 +8,21 @@ const Story: ComponentMeta<typeof UserMenu> = {
 };
 export default Story;
 
-const Template: ComponentStory<typeof UserMenu> = (args) => (
-  <UserMenu {...args} />
-);
+const Template: ComponentStory<typeof UserMenu> = () => {
+  const router = createMemoryRouter([
+    {
+      element: <UserMenu />,
+      path: '/',
+      loader: () => ({
+        display_name: 'Username',
+      }),
+    },
+  ]);
 
-export const UnclippedUsername = Template.bind({});
-UnclippedUsername.args = {
-  username: 'username',
+  return <RouterProvider router={router} />;
 };
 
-export const ClippedUsername = Template.bind({});
-ClippedUsername.args = {
-  username: 'username is so looooooong',
+export const Default = Template.bind({});
+Default.args = {
+  username: 'username',
 };
