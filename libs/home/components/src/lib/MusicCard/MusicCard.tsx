@@ -14,7 +14,7 @@ export function MusicCard({
   imgAlt,
 }: MusicCardProps) {
   return (
-    <div className="bg-spotify-black h-[288px] w-[210px] cursor-pointer space-y-3 rounded p-4 transition-all hover:bg-opacity-90">
+    <div className="bg-spotify-black h-[288px] w-[210px] cursor-pointer space-y-3 rounded p-4 transition-all hover:bg-white hover:bg-opacity-5">
       <div className="shadow-lg">
         <Root ratio={1}>
           <img
