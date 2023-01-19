@@ -1,5 +1,9 @@
 import 'tailwindcss/tailwind.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+// Initialize MSW
+initialize();
 
 const queryClient = new QueryClient();
 
@@ -11,4 +15,5 @@ export const decorators = [
       </QueryClientProvider>
     </div>
   ),
+  mswDecorator,
 ];
