@@ -25,7 +25,8 @@
       "options": {
         "uiFramework": "@storybook/react",
         "port": 4400,
-        "configDir": "libs/dashboard/components/.storybook"
+        "configDir": "libs/dashboard/components/.storybook",
+        "staticDir": [".storybook/public"]
       },
       "configurations": {
         "ci": {
