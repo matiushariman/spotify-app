@@ -24,6 +24,7 @@
       "@react-spotify/dashboard-feature": [
         "libs/dashboard/feature/src/index.ts"
       ],
+      "@react-spotify/home-components": ["libs/home/components/src/index.ts"],
       "@react-spotify/shared-api-client": [
         "libs/shared/api-client/src/index.ts"
       ],
