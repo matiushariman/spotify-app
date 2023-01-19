@@ -1,0 +1,51 @@
+{
+  "name": "home-components",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/home/components/src",
+  "projectType": "library",
+  "tags": ["home", "components"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/home/components/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/libs/home/components"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/libs/home/components"
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "configDir": "libs/home/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "uiFramework": "@storybook/react",
+        "outputDir": "dist/storybook/home-components",
+        "configDir": "libs/home/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  }
+}

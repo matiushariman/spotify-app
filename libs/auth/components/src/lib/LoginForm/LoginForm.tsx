@@ -2,7 +2,11 @@ import { Button, SpotifyLink } from '@react-spotify/shared-ui-components';
 
 const getSpotifyAuthUrl = () => {
   const authorizationUrl = 'https://accounts.spotify.com/authorize';
-  const scopes = ['user-read-private', 'user-read-email'];
+  const scopes = [
+    'user-read-private',
+    'user-read-email',
+    'user-read-recently-played',
+  ];
   const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
   const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 
