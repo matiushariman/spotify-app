@@ -1,6 +1,7 @@
-import { SideNavigation, AppBar } from '@react-spotify/dashboard-components';
+import { SideNavigation } from '@react-spotify/dashboard-components';
 import { GradientBackground } from '@react-spotify/shared-ui-components';
 import { Outlet } from 'react-router-dom';
+import AppBar from '../AppBar/AppBar';
 
 export function Dashboard() {
   return (

@@ -7,22 +7,19 @@ import {
   Arrow,
 } from '@radix-ui/react-dropdown-menu';
 import { useSessionStore } from '@react-spotify/shared-stores';
-import { useGetMe, GetMeResponse } from '@react-spotify/dashboard-api';
-import { useLoaderData } from 'react-router-dom';
 import Avatar from '../Avatar/Avatar';
 import UsernameTooltip from '../UsernameTooltip/UsernameTooltip';
 
 const displayUsername = (username: string) =>
   username.length > 13 ? `${username.substring(0, 13)}...` : username;
 
-export function UserMenu() {
+export interface UserMenuProps {
+  avatar?: string;
+  username?: string;
+}
+
+export function UserMenu({ username = 'Username', avatar }: UserMenuProps) {
   const removeAccessToken = useSessionStore((state) => state.removeAccessToken);
-  const initialData = useLoaderData() as GetMeResponse;
-  const { data } = useGetMe({
-    initialData,
-  });
-  const username = data.display_name as string;
-  const avatar = data.images?.[0].url;
 
   return (
     <Root>
