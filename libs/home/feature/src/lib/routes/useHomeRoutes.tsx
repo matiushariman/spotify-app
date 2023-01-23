@@ -1,5 +1,8 @@
 import { RouteObject } from 'react-router-dom';
-import { getRecentlyPlayedLoader } from '@react-spotify/home-api';
+import {
+  getRecentlyPlayedLoader,
+  getSavedShowsLoader,
+} from '@react-spotify/home-api';
 import { useSessionStore } from '@react-spotify/shared-stores';
 import { lazy, Suspense } from 'react';
 
@@ -23,9 +26,11 @@ export function useHomeRoutes(): UseHomeRoutes {
       ),
       loader: async () => {
         const recentlyPlayed = await getRecentlyPlayedLoader(accessToken);
+        const savedShows = await getSavedShowsLoader(accessToken);
 
         return {
           recentlyPlayed,
+          savedShows,
         };
       },
     },
