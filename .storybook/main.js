@@ -5,6 +5,7 @@ module.exports = {
     '../../../libs/dashboard/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/dashboard/feature/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/home/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
+    '../../../libs/home/feature/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/shared/ui-components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@storybook/addon-essentials'],

@@ -3,12 +3,12 @@ import { RecentlyPlayed } from './RecentlyPlayed';
 
 const Story: ComponentMeta<typeof RecentlyPlayed> = {
   component: RecentlyPlayed,
-  title: 'RecentlyPlayed',
+  title: 'home/feature/RecentlyPlayed',
 };
 export default Story;
 
-const Template: ComponentStory<typeof RecentlyPlayed> = (args) => (
-  <RecentlyPlayed {...args} />
+const Template: ComponentStory<typeof RecentlyPlayed> = () => (
+  <RecentlyPlayed />
 );
 
 export const Primary = Template.bind({});
