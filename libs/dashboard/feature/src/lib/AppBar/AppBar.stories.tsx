@@ -5,7 +5,7 @@ import { AppBar } from './AppBar';
 
 const Story: ComponentMeta<typeof AppBar> = {
   component: AppBar,
-  title: 'AppBar',
+  title: 'dashboard/feature/AppBar',
   parameters: {
     msw: {
       handlers: [
