@@ -3,7 +3,7 @@ import { GradientBackground } from './GradientBackground';
 
 const Story: ComponentMeta<typeof GradientBackground> = {
   component: GradientBackground,
-  title: 'GradientBackground',
+  title: 'Shared/ui-components/GradientBackground',
 };
 export default Story;
 

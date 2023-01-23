@@ -35,33 +35,6 @@
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/libs/shared/ui-components"
       }
-    },
-    "storybook": {
-      "executor": "@nrwl/storybook:storybook",
-      "options": {
-        "uiFramework": "@storybook/react",
-        "port": 4400,
-        "configDir": "libs/shared/ui-components/.storybook"
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@nrwl/storybook:build",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "uiFramework": "@storybook/react",
-        "outputDir": "dist/storybook/shared-ui-components",
-        "configDir": "libs/shared/ui-components/.storybook"
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
     }
   }
 }

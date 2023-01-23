@@ -3,7 +3,7 @@ import { Button } from './Button';
 
 const Story: ComponentMeta<typeof Button> = {
   component: Button,
-  title: 'Button',
+  title: 'Shared/ui-components/Button',
 };
 export default Story;
 

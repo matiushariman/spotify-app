@@ -3,7 +3,7 @@ import { SpotifyLink } from './SpotifyLink';
 
 const Story: ComponentMeta<typeof SpotifyLink> = {
   component: SpotifyLink,
-  title: 'SpotifyLink',
+  title: 'Shared/ui-components/SpotifyLink',
 };
 export default Story;
 

@@ -1,5 +1,7 @@
 module.exports = {
-  stories: [],
+  stories: [
+    '../../../libs/shared/ui-components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: ['@storybook/addon-essentials'],
   // uncomment the property below if you want to apply some webpack config globally
   // webpackFinal: async (config, { configType }) => {
