@@ -2,6 +2,7 @@ module.exports = {
   stories: [
     '../../../libs/auth/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/auth/feature/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
+    '../../../libs/dashboard/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/shared/ui-components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@storybook/addon-essentials'],

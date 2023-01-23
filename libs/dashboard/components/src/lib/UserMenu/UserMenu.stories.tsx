@@ -3,7 +3,7 @@ import { UserMenu } from './UserMenu';
 
 const Story: ComponentMeta<typeof UserMenu> = {
   component: UserMenu,
-  title: 'UserMenu',
+  title: 'dashboard/components/UserMenu',
 };
 export default Story;
 

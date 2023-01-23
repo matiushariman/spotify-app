@@ -3,7 +3,7 @@ import { SideNavigation } from './SideNavigation';
 
 const Story: ComponentMeta<typeof SideNavigation> = {
   component: SideNavigation,
-  title: 'SideNavigation',
+  title: 'dashboard/components/SideNavigation',
 };
 export default Story;
 
