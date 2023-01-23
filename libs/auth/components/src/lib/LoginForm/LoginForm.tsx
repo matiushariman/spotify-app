@@ -6,6 +6,7 @@ const getSpotifyAuthUrl = () => {
     'user-read-private',
     'user-read-email',
     'user-read-recently-played',
+    'user-library-read',
   ];
   const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
   const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
