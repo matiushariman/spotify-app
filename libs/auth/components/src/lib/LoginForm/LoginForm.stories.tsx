@@ -3,13 +3,11 @@ import { LoginForm } from './LoginForm';
 
 const Story: ComponentMeta<typeof LoginForm> = {
   component: LoginForm,
-  title: 'LoginForm',
+  title: 'auth/components/LoginForm',
 };
 export default Story;
 
-const Template: ComponentStory<typeof LoginForm> = (args) => (
-  <LoginForm {...args} />
-);
+const Template: ComponentStory<typeof LoginForm> = () => <LoginForm />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
