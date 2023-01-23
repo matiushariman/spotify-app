@@ -1,7 +1,4 @@
-import {
-  GradientBackground,
-  Button,
-} from '@react-spotify/shared-ui-components';
+import { Button } from '@react-spotify/shared-ui-components';
 import { useSessionStore } from '@react-spotify/shared-stores';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -20,7 +17,7 @@ export function Callback() {
   }, []);
 
   return (
-    <GradientBackground className="flex items-center justify-around p-4">
+    <div className="flex h-screen items-center justify-around p-4">
       {!hash ? (
         <div className="space-y-6">
           <div className="space-y-2">
@@ -38,7 +35,7 @@ export function Callback() {
       ) : (
         <h1>Redirecting you back to the app...</h1>
       )}
-    </GradientBackground>
+    </div>
   );
 }
 
