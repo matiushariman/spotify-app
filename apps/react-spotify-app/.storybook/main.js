@@ -3,8 +3,6 @@ const rootMain = require('../../../.storybook/main');
 const { mergeConfig } = require('vite');
 const viteTsConfigPaths = require('vite-tsconfig-paths').default;
 
-console.log(rootMain);
-
 module.exports = {
   ...rootMain,
   core: { ...rootMain.core, builder: '@storybook/builder-vite' },
