@@ -3,7 +3,7 @@ import { Avatar } from './Avatar';
 
 const Story: ComponentMeta<typeof Avatar> = {
   component: Avatar,
-  title: 'Avatar',
+  title: 'dashboard/components/Avatar',
 };
 export default Story;
 

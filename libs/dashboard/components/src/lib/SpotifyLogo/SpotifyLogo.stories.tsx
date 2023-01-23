@@ -3,7 +3,7 @@ import { SpotifyLogo } from './SpotifyLogo';
 
 const Story: ComponentMeta<typeof SpotifyLogo> = {
   component: SpotifyLogo,
-  title: 'SpotifyLogo',
+  title: 'dashboard/components/SpotifyLogo',
 };
 export default Story;
 

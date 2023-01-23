@@ -3,7 +3,7 @@ import { UsernameTooltip } from './UsernameTooltip';
 
 const Story: ComponentMeta<typeof UsernameTooltip> = {
   component: UsernameTooltip,
-  title: 'UsernameTooltip',
+  title: 'dashboard/components/UsernameTooltip',
 };
 export default Story;
 
