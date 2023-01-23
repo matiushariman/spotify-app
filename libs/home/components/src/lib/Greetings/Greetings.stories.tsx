@@ -3,7 +3,7 @@ import { Greetings } from './Greetings';
 
 const Story: ComponentMeta<typeof Greetings> = {
   component: Greetings,
-  title: 'Greetings',
+  title: 'home/components/Greetings',
 };
 export default Story;
 

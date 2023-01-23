@@ -3,7 +3,7 @@ import { RecentlyPlayedList } from './RecentlyPlayedList';
 
 const Story: ComponentMeta<typeof RecentlyPlayedList> = {
   component: RecentlyPlayedList,
-  title: 'RecentlyPlayedList',
+  title: 'home/components/RecentlyPlayedList',
 };
 export default Story;
 
