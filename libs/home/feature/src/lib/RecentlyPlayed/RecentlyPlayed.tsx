@@ -1,9 +1,8 @@
-import {
-  useGetRecentlyPlayed,
-  GetRecentlyPlayedResponse,
-} from '@react-spotify/home-api';
+import { useGetRecentlyPlayed } from '@react-spotify/home-api';
 import { RecentlyPlayedList } from '@react-spotify/home-components';
 import { useLoaderData } from 'react-router-dom';
+
+import type { UseHomeRoutesLoaderData } from '../routes/useHomeRoutes.types';
 
 const displayTrackName = (trackName: string) => {
   const MAX_TRACK_NAME_LENGTH = 15;
@@ -39,9 +38,9 @@ interface Item {
 }
 
 export function RecentlyPlayed() {
-  const initialData = useLoaderData() as GetRecentlyPlayedResponse;
+  const { recentlyPlayed } = useLoaderData() as UseHomeRoutesLoaderData;
   // need to convert cause original type does not include updated shape with album
-  const { data } = useGetRecentlyPlayed({ initialData });
+  const { data } = useGetRecentlyPlayed({ initialData: recentlyPlayed });
 
   return (
     <section className="space-y-4">
