@@ -2,7 +2,8 @@ import { createApiClient } from '@react-spotify/shared-api-client';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { useSessionStore } from '@react-spotify/shared-stores';
 
-export const getMe = async (accessToken: string) => {
+export const getMe = async () => {
+  const accessToken = useSessionStore.getState().accessToken as string;
   const SpotifyClient = createApiClient({ accessToken });
 
   return SpotifyClient.getMe();
@@ -10,16 +11,14 @@ export const getMe = async (accessToken: string) => {
 
 export type GetMeResponse = Awaited<ReturnType<typeof getMe>>;
 
-export const getMeQuery = (accessToken: string) => ({
+export const getMeQuery = () => ({
   queryKey: ['me'],
-  queryFn: async () => getMe(accessToken),
+  queryFn: async () => getMe(),
 });
 
-export const getMeLoader = async (
-  accessToken: string
-): Promise<GetMeResponse> => {
+export const getMeLoader = async (): Promise<GetMeResponse> => {
   const queryClient = new QueryClient();
-  const query = getMeQuery(accessToken);
+  const query = getMeQuery();
 
   return (
     queryClient.getQueryData(query.queryKey) ??
@@ -32,7 +31,5 @@ export interface UseGetMeProps {
 }
 
 export const useGetMe = ({ initialData }: UseGetMeProps) => {
-  const accessToken = useSessionStore((state) => state.accessToken) as string;
-
-  return useQuery({ ...getMeQuery(accessToken), initialData });
+  return useQuery({ ...getMeQuery(), initialData });
 };
