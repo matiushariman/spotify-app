@@ -3,19 +3,12 @@ import {
   getRecentlyPlayedLoader,
   getSavedShowsLoader,
 } from '@react-spotify/home-api';
-import { useSessionStore } from '@react-spotify/shared-stores';
 import { lazy, Suspense } from 'react';
 
 export type UseHomeRoutes = RouteObject[];
 
 const Home = lazy(() => import('../Home/Home'));
 export function useHomeRoutes(): UseHomeRoutes {
-  const accessToken = useSessionStore((state) => state.accessToken);
-
-  if (!accessToken) {
-    return [];
-  }
-
   return [
     {
       path: '',
