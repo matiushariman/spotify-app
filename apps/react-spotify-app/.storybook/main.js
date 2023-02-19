@@ -11,7 +11,11 @@ module.exports = {
     '../src/app/**/*.stories.mdx',
     '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-essentials', ...rootMain.addons],
+  addons: [
+    '@storybook/addon-essentials',
+    'storybook-addon-swc',
+    ...(rootMain.addons ?? []),
+  ],
   staticDirs: [...rootMain.staticDirs],
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
