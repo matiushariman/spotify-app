@@ -2,7 +2,8 @@ import { createApiClient } from '@react-spotify/shared-api-client';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { useSessionStore } from '@react-spotify/shared-stores';
 
-export const getSavedShows = async (accessToken: string) => {
+export const getSavedShows = async () => {
+  const accessToken = useSessionStore.getState().accessToken as string;
   const SpotifyClient = createApiClient({ accessToken });
 
   return SpotifyClient.getMySavedShows({
@@ -12,16 +13,14 @@ export const getSavedShows = async (accessToken: string) => {
 
 export type GetSavedShowsResponse = Awaited<ReturnType<typeof getSavedShows>>;
 
-export const getSavedShowsQuery = (accessToken: string) => ({
+export const getSavedShowsQuery = () => ({
   queryKey: ['getSavedShows'],
-  queryFn: async () => getSavedShows(accessToken),
+  queryFn: async () => getSavedShows(),
 });
 
-export const getSavedShowsLoader = async (
-  accessToken: string
-): Promise<GetSavedShowsResponse> => {
+export const getSavedShowsLoader = async (): Promise<GetSavedShowsResponse> => {
   const queryClient = new QueryClient();
-  const query = getSavedShowsQuery(accessToken);
+  const query = getSavedShowsQuery();
 
   return (
     queryClient.getQueryData(query.queryKey) ??
@@ -34,7 +33,5 @@ export interface UseGetSavedShowsProps {
 }
 
 export const useGetSavedShows = ({ initialData }: UseGetSavedShowsProps) => {
-  const accessToken = useSessionStore((state) => state.accessToken) as string;
-
-  return useQuery({ ...getSavedShowsQuery(accessToken), initialData });
+  return useQuery({ ...getSavedShowsQuery(), initialData });
 };
