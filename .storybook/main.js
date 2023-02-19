@@ -8,7 +8,7 @@ module.exports = {
     '../../../libs/home/feature/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../libs/shared/ui-components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-essentials'],
+
   staticDirs: ['../../../.storybook/public'],
   // uncomment the property below if you want to apply some webpack config globally
   // webpackFinal: async (config, { configType }) => {
