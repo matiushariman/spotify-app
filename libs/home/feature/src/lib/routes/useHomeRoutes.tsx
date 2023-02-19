@@ -25,7 +25,7 @@ export function useHomeRoutes(): UseHomeRoutes {
         </Suspense>
       ),
       loader: async () => {
-        const recentlyPlayed = await getRecentlyPlayedLoader(accessToken);
+        const recentlyPlayed = await getRecentlyPlayedLoader();
         const savedShows = await getSavedShowsLoader(accessToken);
 
         return {
