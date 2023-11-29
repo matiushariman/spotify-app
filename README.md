@@ -38,7 +38,7 @@ VITE_SPOTIFY_REDIRECT_URI=[YOUR_SPOTIFY_APP_REDIRECT_URI]
 ## Running the application(s)
 
 - To run the application, use `pnpm nx serve react-spotify` command.
-  - Alternatively (preferred), use nx console plugin in your IDE to run the application.
+    - Alternatively (preferred), use nx console plugin in your IDE to run the application.
 
 ## Development Methodology
 
